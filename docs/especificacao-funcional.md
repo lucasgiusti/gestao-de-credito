@@ -36,7 +36,8 @@ flowchart TD
     N --> J
     M -->|Sim| O["Emissão de<br>Contrato"]
     O --> P["Assinatura<br>Digital"]
-    P --> Q["Atualização para<br>Status COMPRADO"]
+    P --> S["Coleta de Dados<br>para Pagamento"]
+    S --> Q["Atualização para<br>Status COMPRADO"]
     Q --> R["Integração ao<br>Portfólio"]
 ```
 
@@ -132,7 +133,14 @@ flowchart TD
 - **Funcionalidades:**
   - Armazenamento seguro em serviço cloud de terceiros
 
-#### 3.3 Atualização de Status
+#### 3.3 Coleta de Dados para Pagamento
+- **Descrição:** O sistema deve permitir a coleta e armazenamento dos dados bancários e informações necessárias para efetuar o pagamento ao cedente.
+- **Funcionalidades:**
+  - Cadastro de dados bancários do cedente
+  - Registro de informações fiscais necessárias (se necessário)
+  - Armazenamento seguro das informações financeiras
+
+#### 3.4 Atualização de Status
 - **Descrição:** O sistema deve permitir a atualização do status da oportunidade para COMPRADO (a definir) após a finalização do processo de aquisição.
 - **Funcionalidades:**
   - Workflow de aprovação
