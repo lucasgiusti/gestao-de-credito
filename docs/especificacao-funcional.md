@@ -19,26 +19,36 @@ O Sistema de Gestão de Créditos é uma plataforma que permite o gerenciamento 
 
 ```mermaid
 flowchart TD
-    A["Identificação de<br>Oportunidades"] --> B["Cadastro de<br>Dados Básicos"]
-    B --> C["Classificação da<br>Oportunidade"]
-    C --> D["Cálculos de<br>Atualização Monetária"]
-    D --> E{"Oportunidade<br>Viável?"}
-    E -->|Não| F["Arquivamento"]
-    E -->|Sim| G["Negociação com<br>Cedente"]
-    G --> H{"Negociação<br>Positiva?"}
+    A["1. Identificação de Oportunidades"] --> B["2. Cadastro de Dados Básicos\n(Prospect)"]
+    B --> B1["2.1. Integração com Tribunais\n(Esaj, PJe, e-SAJ, Projudi)"]
+    B --> B2["3. Busca de dados dos Cedentes/\nAdvogados"]
+    B1 --> C["4. Classificação da Oportunidade\n(Carteira/Portfólio)"]
+    B2 --> C
+    C --> D["5. Cálculos de Atualização Monetária\n(IPCA, CDI, SELIC, IGPM, TR)"]
+    D --> D1["6. Cálculo de Juros\n(Simulação com diferentes parâmetros)"]
+    D1 --> E1["7. Precificação\n7.1. Módulo de cenários"]
+    E1 --> E{"Oportunidade Viável?"}
+    E -->|Não| F["Arquivamento\n(Base Prospect)"]
+    E -->|Sim| G["8. Negociação com Cedente"]
+    G --> H{"Negociação Positiva?"}
     H -->|Não| F
-    H -->|Sim| I["Recepção de<br>Documentos"]
-    I --> J["Análise<br>Técnica"]
-    J --> K["Geração de<br>Relatório"]
-    K --> L["Validação por<br>Perito"]
+    H -->|Sim| I["9. Recepção de Documentos\n(via GED/Google Forms)"]
+    I --> J["10. Análise Técnica\n(Due Diligence)"]
+    J --> K["11. Geração de Relatório\n(Gravado no GED)"]
+    K --> L["12. Validação por Perito"]
     L --> M{"Aprovado?"}
-    M -->|Não| N["Revisão/<br>Ajustes"]
+    M -->|Não| N["Revisão/Ajustes"]
     N --> J
-    M -->|Sim| O["Emissão de<br>Contrato"]
-    O --> P["Assinatura<br>Digital"]
-    P --> S["Coleta de Dados<br>para Pagamento"]
-    S --> Q["Atualização para<br>Status COMPRADO"]
-    Q --> R["Integração ao<br>Portfólio"]
+    M -->|Sim| O1["13. Arquivamento completo no GED"]
+    O1 --> O2["14. Confirmação ao Investidor/ADM"]
+    O2 --> O3["15. Coleta de Dados para Pagamento"]
+    O3 --> O4["16. Geração Carta de Cessão"]
+    O4 --> O["17. Emissão de Contrato"]
+    O --> P["18. Assinatura Digital\n(ClickSign/SAFE WEB)"]
+    P --> P1["19. Contrato assinado no GED"]
+    P1 --> S["20. Geração de Pagamento\n(Borderô para FIDC)"]
+    S --> Q["21. Atualização para Status COMPRADO\n(Data, valor pago, valor crédito)"]
+    Q --> R["22. Integração ao Portfólio"]
 ```
 
 ### 2. Ciclo de Gestão do Crédito Adquirido
@@ -81,6 +91,7 @@ flowchart TD
 
 #### 1.3 Cálculos de Atualização Monetária
 - **Descrição:** O sistema deve possibilitar a realização de cálculos para determinar o valor atual do processo.
+
 - **Funcionalidades:**
   - Aplicação de cálculos a definir
 
@@ -131,6 +142,7 @@ flowchart TD
 #### 3.2 Assinatura Digital
 - **Descrição:** O sistema armazenará os contratos assinados digitalmente por todas as partes envolvidas.
 - **Funcionalidades:**
+  - O Máximo de interação possível nas ferramentas
   - Armazenamento seguro em serviço cloud de terceiros
 
 #### 3.3 Coleta de Dados para Pagamento
